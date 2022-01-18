@@ -1,6 +1,6 @@
 import { Marker, Tooltip, useMap } from "react-leaflet";
 
-import { defaultIcon } from "../icons/defaultIcon";
+import { mountainIcon } from "../icons/mountainIcon";
 
 export const MarkerLayerTooltip = ({ data }) => {
   return data.features.map((feature) => {
@@ -12,7 +12,7 @@ export const MarkerLayerTooltip = ({ data }) => {
       <Marker
         key={String(coordinates)}
         position={[coordinates[1], coordinates[0]]}
-        icon={defaultIcon}
+        icon={mountainIcon}
       >
         <Tooltip>
           <h3>Mt. {name}</h3>
