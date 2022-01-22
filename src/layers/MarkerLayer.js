@@ -1,9 +1,15 @@
-import { Marker, Popup, useMap } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 
 import { defaultIcon } from "../icons/defaultIcon";
 
-export const MarkerLayer = ({ data }) => {
+import { Row } from "antd";
 
+const PopupStatistics = ({ properties }) => {
+  const { name } = properties;
+  return <Row>{name}</Row>;
+};
+
+export const MarkerLayer = ({ data }) => {
   return data.features.map((feature) => {
     const { coordinates } = feature.geometry;
 
@@ -14,7 +20,7 @@ export const MarkerLayer = ({ data }) => {
         icon={defaultIcon}
       >
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          <PopupStatistics properties={feature.properties} />
         </Popup>
       </Marker>
     );
