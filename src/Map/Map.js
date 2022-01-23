@@ -26,7 +26,10 @@ export const Map = () => {
         setRadiusFilter={setRadiusFilter}
       />
       <MarkerLayerTooltip data={mountains} />
-      <RadiusFilter radiusFilter={radiusFilter} />
+      <RadiusFilter
+        radiusFilter={radiusFilter}
+        setRadiusFilter={setRadiusFilter}
+      />
     </MapContainer>
   );
 };
