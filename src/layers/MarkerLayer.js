@@ -2,11 +2,34 @@ import { Marker, Popup } from "react-leaflet";
 
 import { defaultIcon } from "../icons/defaultIcon";
 
-import { Row } from "antd";
+import { Button, Card, InputNumber, Space } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 const PopupStatistics = ({ properties }) => {
-  const { name } = properties;
-  return <Row>{name}</Row>;
+  const { name, adm0name, pop_max } = properties;
+
+  return (
+    <>
+      <Card type="inner" title="Name" style={{ marginTop: 16 }}>
+        <b>{`${name}, ${adm0name}`}</b>
+      </Card>
+      <Card type="inner" title="Population" style={{ marginTop: 16 }}>
+        <b>{pop_max}</b>
+      </Card>
+      <Card type="inner" title="Radius filter" style={{ marginTop: 16 }}>
+        <Space size={"small"}>
+          <InputNumber
+            defaultValue={3000}
+            min={0}
+            onChange={(e) => console.log(e)}
+          />
+          <Button type="primary" shape="round" icon={<SearchOutlined />}>
+            Filter by km
+          </Button>
+        </Space>
+      </Card>
+    </>
+  );
 };
 
 export const MarkerLayer = ({ data }) => {
