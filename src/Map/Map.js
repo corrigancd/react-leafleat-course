@@ -3,6 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 
 import { MarkerLayer } from "../layers/MarkerLayer";
 import { MarkerLayerTooltip } from "../layers/MarkerLayerTooltip";
+import { RadiusFilter } from "../layers/radiusFilter";
 
 import { cities } from "../data/cities";
 import { mountains } from "../data/highest_mountains";
@@ -25,6 +26,7 @@ export const Map = () => {
         setRadiusFilter={setRadiusFilter}
       />
       <MarkerLayerTooltip data={mountains} />
+      <RadiusFilter radiusFilter={radiusFilter} />
     </MapContainer>
   );
 };
