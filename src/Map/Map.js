@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 
 import { MarkerLayer } from "../layers/MarkerLayer";
@@ -8,6 +8,9 @@ import { cities } from "../data/cities";
 import { mountains } from "../data/highest_mountains";
 
 export const Map = () => {
+  const [radiusFilter, setRadiusFilter] = useState(null);
+  const getRadiusFilter = () => radiusFilter;
+
   const position = [0, 0];
 
   return (
@@ -16,7 +19,11 @@ export const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <MarkerLayer data={cities} />
+      <MarkerLayer
+        data={cities}
+        getRadiusFilter={getRadiusFilter}
+        setRadiusFilter={setRadiusFilter}
+      />
       <MarkerLayerTooltip data={mountains} />
     </MapContainer>
   );
