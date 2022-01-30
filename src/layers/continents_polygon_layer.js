@@ -17,7 +17,12 @@ export const ContinentsPolygonLayer = ({
           setGeoFilter((prevState) => {
             const sameFeature = prevState === e.propagatedFrom.feature;
             return sameFeature ? null : e.propagatedFrom.feature;
-          })
+          }),
+      }}
+      style={(feature) => {
+        return {
+          color: geoFilter === feature ? "red" : "blue",
+        };
       }}
     ></GeoJSON>
   );
