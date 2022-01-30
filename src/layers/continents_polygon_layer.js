@@ -1,11 +1,20 @@
 import { GeoJSON } from "react-leaflet";
 
-export const ContinentsPolygonLayer = ({ data }) => {
+export const ContinentsPolygonLayer = ({
+  data,
+  setGeoFilter,
+  getGeoFilter,
+}) => {
+  const geoFilter = getGeoFilter();
+  console.log(geoFilter);
+
   return (
     <GeoJSON
-      key={String('geo-json-layer')}
+      key={String("geo-json-layer")}
       data={data}
-    >
-    </GeoJSON>
+      eventHandlers={{
+        click: (e) => setGeoFilter(e.propagatedFrom.feature),
+      }}
+    ></GeoJSON>
   );
 };
