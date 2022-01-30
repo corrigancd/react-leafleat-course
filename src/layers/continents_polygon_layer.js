@@ -13,7 +13,11 @@ export const ContinentsPolygonLayer = ({
       key={String("geo-json-layer")}
       data={data}
       eventHandlers={{
-        click: (e) => setGeoFilter(e.propagatedFrom.feature),
+        click: (e) =>
+          setGeoFilter((prevState) => {
+            const sameFeature = prevState === e.propagatedFrom.feature;
+            return sameFeature ? null : e.propagatedFrom.feature;
+          })
       }}
     ></GeoJSON>
   );
