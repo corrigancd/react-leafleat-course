@@ -29,6 +29,7 @@ export const Map = () => {
         data={cities}
         getRadiusFilter={getRadiusFilter}
         setRadiusFilter={setRadiusFilter}
+        getGeoFilter={getGeoFilter}
       />
       <MarkerLayerTooltip data={mountains} />
       <RadiusFilter

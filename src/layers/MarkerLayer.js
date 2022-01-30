@@ -1,5 +1,6 @@
 import { useState } from "react";
 import L from "leaflet";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { Marker, Popup } from "react-leaflet";
 
 import { defaultIcon } from "../icons/defaultIcon";
@@ -57,8 +58,15 @@ const PopupStatistics = ({ feature, setFilter }) => {
   );
 };
 
-export const MarkerLayer = ({ data, getRadiusFilter, setRadiusFilter }) => {
+export const MarkerLayer = ({
+  data,
+  getRadiusFilter,
+  setRadiusFilter,
+  getGeoFilter,
+}) => {
   const radiusFilter = getRadiusFilter();
+  const geoFilter = getGeoFilter();
+
   let centerPoint;
   if (radiusFilter) {
     const { coordinates } = radiusFilter.feature.geometry;
@@ -67,15 +75,30 @@ export const MarkerLayer = ({ data, getRadiusFilter, setRadiusFilter }) => {
 
   return data.features
     .filter((currentFeature) => {
+      let filterByRadius;
+      let filterByGeo;
+
       if (centerPoint) {
         const { coordinates } = currentFeature.geometry;
         const currentPoint = L.latLng(coordinates[1], coordinates[0]);
-        return (
-          centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius
-        );
-      } else {
-        return true;
+        filterByRadius =
+          centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius;
       }
+
+      if (geoFilter) {
+        filterByGeo = booleanPointInPolygon(currentFeature, geoFilter);
+      }
+
+      let doFilter = true;
+      if (geoFilter && radiusFilter) {
+        doFilter = filterByGeo && filterByRadius;
+      } else if (geoFilter && !radiusFilter) {
+        doFilter = filterByGeo;
+      } else if (radiusFilter && !geoFilter) {
+        doFilter = filterByRadius;
+      }
+
+      return doFilter;
     })
     .map((feature) => {
       const { coordinates } = feature.geometry;
