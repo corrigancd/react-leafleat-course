@@ -22,6 +22,8 @@ export const ContinentsPolygonLayer = ({
       style={(feature) => {
         return {
           color: geoFilter === feature ? "red" : "blue",
+          weight: 0.5,
+          fillOpacity: 0.4,
         };
       }}
     ></GeoJSON>
