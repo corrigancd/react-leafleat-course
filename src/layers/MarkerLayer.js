@@ -1,7 +1,7 @@
 import { useState } from "react";
 import L from "leaflet";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { LayersControl, Marker, Popup } from "react-leaflet";
+import { LayersControl, LayerGroup, Marker, Popup } from "react-leaflet";
 
 import { defaultIcon } from "../icons/defaultIcon";
 
@@ -118,7 +118,7 @@ export const MarkerLayer = ({
 
   return (
     <LayersControl.Overlay checked name={"World cities"}>
-      {layer}
+      <LayerGroup>{layer}</LayerGroup>
     </LayersControl.Overlay>
   );
 };
