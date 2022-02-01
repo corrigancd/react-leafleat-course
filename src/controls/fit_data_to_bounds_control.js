@@ -13,6 +13,8 @@ Control.FitMapBoundsToDataControl = Control.extend({
   onAdd: function (map) {
     ReactDOM.render(
       <Button
+        className={"leaflet-control-layers"} // same css as layer control
+        style={{ width: "34px", height: "34px" }}
         title={"Fit bounds to world"}
         icon={<BorderOuterOutlined />}
         onClick={() => map.fitWorld()}
@@ -25,7 +27,7 @@ Control.FitMapBoundsToDataControl = Control.extend({
 
   onRemove: function (map) {
     unmountComponentAtNode(node);
-  }
+  },
 });
 
 export const FitMapBoundsToDataControl = createControlComponent(
