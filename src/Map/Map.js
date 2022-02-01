@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, LayersControl, TileLayer } from "react-leaflet";
 
 import { MarkerLayer } from "../layers/MarkerLayer";
 import { MarkerLayerTooltip } from "../layers/MarkerLayerTooltip";
@@ -21,26 +21,30 @@ export const Map = () => {
 
   return (
     <MapContainer center={position} zoom={2} scrollWheelZoom={true}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <MarkerLayer
-        data={cities}
-        getRadiusFilter={getRadiusFilter}
-        setRadiusFilter={setRadiusFilter}
-        getGeoFilter={getGeoFilter}
-      />
-      <MarkerLayerTooltip data={mountains} />
-      <RadiusFilter
-        radiusFilter={radiusFilter}
-        setRadiusFilter={setRadiusFilter}
-      />
-      <ContinentsPolygonLayer
-        data={continents}
-        setGeoFilter={setGeoFilter}
-        getGeoFilter={getGeoFilter}
-      />
+      <LayersControl position="topright">
+        <LayersControl.BaseLayer checked name={"OSM - Streets"}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
+        <MarkerLayer
+          data={cities}
+          getRadiusFilter={getRadiusFilter}
+          setRadiusFilter={setRadiusFilter}
+          getGeoFilter={getGeoFilter}
+        />
+        <MarkerLayerTooltip data={mountains} />
+        <RadiusFilter
+          radiusFilter={radiusFilter}
+          setRadiusFilter={setRadiusFilter}
+        />
+        <ContinentsPolygonLayer
+          data={continents}
+          setGeoFilter={setGeoFilter}
+          getGeoFilter={getGeoFilter}
+        />
+      </LayersControl>
     </MapContainer>
   );
 };
