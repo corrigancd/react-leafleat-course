@@ -6,7 +6,6 @@ export const ContinentsPolygonLayer = ({
   getGeoFilter,
 }) => {
   const geoFilter = getGeoFilter();
-  console.log(geoFilter);
 
   const layer = <GeoJSON
       key={String("geo-json-layer")}

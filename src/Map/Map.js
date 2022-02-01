@@ -10,6 +10,8 @@ import { cities } from "../data/cities";
 import { mountains } from "../data/highest_mountains";
 import { continents } from "../data/continents";
 
+import { FitMapBoundsToDataControl } from "../controls/fit_data_to_bounds_control";
+
 export const Map = () => {
   const [radiusFilter, setRadiusFilter] = useState(null);
   const getRadiusFilter = () => radiusFilter;
@@ -45,6 +47,7 @@ export const Map = () => {
           getGeoFilter={getGeoFilter}
         />
       </LayersControl>
+      <FitMapBoundsToDataControl />
     </MapContainer>
   );
 };
