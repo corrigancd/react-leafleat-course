@@ -11,6 +11,7 @@ import { mountains } from "../data/highest_mountains";
 import { continents } from "../data/continents";
 
 import { FitMapBoundsToDataControl } from "../controls/fit_data_to_bounds_control";
+import { ShowActiveFiltersControl } from "../controls/show_active_filters";
 
 export const Map = () => {
   const [radiusFilter, setRadiusFilter] = useState(null);
@@ -48,6 +49,7 @@ export const Map = () => {
         />
       </LayersControl>
       <FitMapBoundsToDataControl />
+      <ShowActiveFiltersControl />
     </MapContainer>
   );
 };
