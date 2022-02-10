@@ -5,7 +5,9 @@ import { List } from "antd";
 
 const node = DomUtil.create("div");
 
-const renderActiveFilters = () => {
+const renderActiveFilters = (filters = {}) => {
+  console.log(filters);
+
   ReactDOM.render(
     <div className={"leaflet-control-layers"}>
       <List
@@ -30,6 +32,8 @@ Control.ShowActiveFiltersControl = Control.extend({
   },
   onAdd: function (map) {
     renderActiveFilters();
+
+    map.on("filter-update", renderActiveFilters);
 
     return node;
   },

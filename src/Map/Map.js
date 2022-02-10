@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MapContainer, LayersControl, TileLayer } from "react-leaflet";
 
 import { MarkerLayer } from "../layers/MarkerLayer";
@@ -20,10 +20,23 @@ export const Map = () => {
   const [geoFilter, setGeoFilter] = useState(null);
   const getGeoFilter = () => geoFilter;
 
+  const [leafletMap, setLeafletMap] = useState(null);
+
   const position = [0, 0];
 
+  useEffect(() => {
+    if (leafletMap) {
+      leafletMap.fire("filter-update", { geoFilter, radiusFilter });
+    }
+  }, [leafletMap, geoFilter, radiusFilter]);
+
   return (
-    <MapContainer center={position} zoom={2} scrollWheelZoom={true}>
+    <MapContainer
+      center={position}
+      zoom={2}
+      scrollWheelZoom={true}
+      whenCreated={setLeafletMap}
+    >
       <LayersControl position="topright">
         <LayersControl.BaseLayer checked name={"OSM - Streets"}>
           <TileLayer
