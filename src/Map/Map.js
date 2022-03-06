@@ -37,7 +37,6 @@ export const Map = () => {
       <ContinetsPolygonLayer
         data={continents}
         setGeoFilter={setGeoFilter}
-        getGeoFilter={getGeoFilter}
       />
     </MapContainer>
   );
