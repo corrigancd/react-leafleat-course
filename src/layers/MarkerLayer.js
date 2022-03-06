@@ -73,53 +73,59 @@ export const MarkerLayer = ({
     centerPoint = L.latLng(coordinates[1], coordinates[0]);
   }
 
-  const layer = data.features
-    .filter((currentFeature) => {
-      let filterByRadius;
-      let filterByGeo;
+  const getLayer = () => {
+    return data.features
+      .filter((currentFeature) => {
+        let filterByRadius;
+        let filterByGeo;
 
-      if (centerPoint) {
-        const { coordinates } = currentFeature.geometry;
-        const currentPoint = L.latLng(coordinates[1], coordinates[0]);
-        filterByRadius =
-          centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius;
-      }
+        if (centerPoint) {
+          const { coordinates } = currentFeature.geometry;
+          const currentPoint = L.latLng(coordinates[1], coordinates[0]);
+          filterByRadius =
+            centerPoint.distanceTo(currentPoint) / 1000 < radiusFilter.radius;
+        }
 
-      if (geoFilter) {
-        filterByGeo = booleanPointInPolygon(currentFeature, geoFilter);
-      }
+        if (geoFilter) {
+          filterByGeo = booleanPointInPolygon(currentFeature, geoFilter);
+        }
 
-      let doFilter = true;
-      if (geoFilter && radiusFilter) {
-        doFilter = filterByGeo && filterByRadius;
-      } else if (geoFilter && !radiusFilter) {
-        doFilter = filterByGeo;
-      } else if (radiusFilter && !geoFilter) {
-        doFilter = filterByRadius;
-      }
+        let doFilter = true;
+        if (geoFilter && radiusFilter) {
+          doFilter = filterByGeo && filterByRadius;
+        } else if (geoFilter && !radiusFilter) {
+          doFilter = filterByGeo;
+        } else if (radiusFilter && !geoFilter) {
+          doFilter = filterByRadius;
+        }
 
-      return doFilter;
-    })
-    .map((feature) => {
-      const { coordinates } = feature.geometry;
+        return doFilter;
+      })
+      .map((feature) => {
+        const { coordinates } = feature.geometry;
 
-      return (
-        <Marker
-          key={String(coordinates)}
-          position={[coordinates[1], coordinates[0]]}
-          icon={defaultIcon}
-          fitToBounds={true}
-        >
-          <Popup>
-            <PopupStatistics feature={feature} setFilter={setRadiusFilter} />
-          </Popup>
-        </Marker>
-      );
-    });
+        return (
+          <Marker
+            key={String(coordinates)}
+            position={[coordinates[1], coordinates[0]]}
+            icon={defaultIcon}
+            fitToBounds={true}
+          >
+            <Popup>
+              <PopupStatistics feature={feature} setFilter={setRadiusFilter} />
+            </Popup>
+          </Marker>
+        );
+      });
+  };
 
-  return (
-    <LayersControl.Overlay checked name={"World cities"}>
-      <LayerGroup>{layer}</LayerGroup>
-    </LayersControl.Overlay>
-  );
+  if (data) {
+    return (
+      <LayersControl.Overlay checked name={"World cities"}>
+        <LayerGroup>{getLayer()}</LayerGroup>
+      </LayersControl.Overlay>
+    );
+  } else {
+    return null;
+  }
 };

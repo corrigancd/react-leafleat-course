@@ -19,7 +19,9 @@ Control.FitMapBoundsToDataControl = Control.extend({
           latLngs.push(latLng);
         }
       });
-      map.fitBounds(latLngs);
+      if (latLngs.length > 0) {
+        map.fitBounds(latLngs);
+      }
     };
 
     const commonProps = {
