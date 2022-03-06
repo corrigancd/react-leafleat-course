@@ -30,7 +30,25 @@ const PopupStatistics = ({ feature, setRadiusFilter }) => {
             type="primary"
             shape="round"
             icon={<FilterOutlined />}
-            onClick={() => setRadiusFilter({ feature, radius })}
+            onClick={() =>
+              setRadiusFilter((prevState) => {
+                let newFilter;
+                if (prevState) {
+                  if (radius === 0) {
+                    newFilter = prevState;
+                  } else {
+                    const sameFeature = prevState.feature === feature;
+                    const sameRadius = prevState.radius === radius;
+                    if (!sameFeature || !sameRadius) {
+                      newFilter = { feature, radius };
+                    }
+                  }
+                } else if (radius !== 0) {
+                  newFilter = { feature, radius };
+                }
+                return newFilter;
+              })
+            }
           >
             Filter by km
           </Button>
