@@ -11,6 +11,9 @@ import { RadiusFilter } from "../layers/radius_filter";
 import { ContinetsPolygonLayer } from "../layers/continents_polygon_layer";
 
 export const Map = () => {
+  const [geoFilter, setGeoFilter] = useState(null);
+  const getGeoFilter = () => geoFilter;
+
   const [radiusFilter, setRadiusFilter] = useState(null);
   const getRadiusFilter = () => radiusFilter;
 
@@ -30,7 +33,11 @@ export const Map = () => {
         radiusFilter={radiusFilter}
         setRadiusFilter={setRadiusFilter}
       />
-      <ContinetsPolygonLayer data={continents} />
+      <ContinetsPolygonLayer
+        data={continents}
+        setGeoFilter={setGeoFilter}
+        getGeoFilter={getGeoFilter}
+      />
     </MapContainer>
   );
 };
