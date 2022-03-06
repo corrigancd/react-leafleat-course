@@ -15,7 +15,9 @@ export const ContinetsPolygonLayer = ({ data, setGeoFilter, getGeoFilter }) => {
       }}
       style={(feature) => {
         return {
-            color: geoFilter === feature ? "red" : "blue"
+            color: geoFilter === feature ? "red" : "blue",
+            weight: 0.5,
+            fillOpacity: 0.4
         }
       }}
     ></GeoJSON>
