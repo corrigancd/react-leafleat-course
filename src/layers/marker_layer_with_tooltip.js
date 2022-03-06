@@ -13,7 +13,7 @@ export const MarkerLayerWithTooltip = ({ data }) => {
         position={[coordinates[1], coordinates[0]]}
         icon={mountainIcon}
         eventHandlers={{
-          click: (e) => leafletMap.panTo(e.latlng),
+          click: (e) => leafletMap.panTo(e.latlng)
         }}
       >
         <Tooltip>

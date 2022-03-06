@@ -1,27 +1,28 @@
+import React from "react";
 import { Marker, Popup } from "react-leaflet";
-
 import { defaultIcon } from "../icons/defaultIcon";
 import { Button, Card, InputNumber, Space } from "antd";
+import { FilterOutlined } from "@ant-design/icons";
 
 const PopupStatistics = ({ feature }) => {
   const { name, adm0name, pop_max } = feature.properties;
 
   return (
     <>
-      <Card type="inner" title="Name">
+      <Card type="inner" title="Name" style={{ marginTop: 16 }}>
         <b>{`${name}, ${adm0name}`}</b>
       </Card>
-      <Card type="inner" title="Population">
+      <Card type="inner" title="Population" style={{ marginTop: 16 }}>
         <b>{`${pop_max}`}</b>
       </Card>
-      <Card type="inner" title="Radius Filter">
-        <Space size="small">
+      <Card type="inner" title="Radius Filter" style={{ marginTop: 16 }}>
+        <Space>
           <InputNumber
             defaultValue={3000}
             min={0}
             onChange={(e) => console.log(e)}
           ></InputNumber>
-          <Button type="primary" shape="round">
+          <Button type="primary" shape="round" icon={<FilterOutlined />}>
             Filter by km
           </Button>
         </Space>
@@ -33,7 +34,6 @@ const PopupStatistics = ({ feature }) => {
 export const MarkerLayer = ({ data }) => {
   return data.features.map((feature) => {
     const { coordinates } = feature.geometry;
-
     return (
       <Marker
         key={String(coordinates)}
@@ -41,7 +41,7 @@ export const MarkerLayer = ({ data }) => {
         icon={defaultIcon}
       >
         <Popup>
-          <PopupStatistics feature={feature}/>
+          <PopupStatistics feature={feature} />
         </Popup>
       </Marker>
     );
