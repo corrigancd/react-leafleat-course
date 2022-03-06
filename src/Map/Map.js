@@ -3,10 +3,12 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 import { cities } from "../data/cities";
 import { mountains } from "../data/highest_points";
+import { continents } from "../data/continents";
 
 import { MarkerLayer } from "../layers/marker_layer";
 import { MarkerLayerWithTooltip } from "../layers/marker_layer_with_tooltip";
 import { RadiusFilter } from "../layers/radius_filter";
+import { ContinetsPolygonLayer } from "../layers/continents_polygon_layer";
 
 export const Map = () => {
   const [radiusFilter, setRadiusFilter] = useState(null);
@@ -28,6 +30,7 @@ export const Map = () => {
         radiusFilter={radiusFilter}
         setRadiusFilter={setRadiusFilter}
       />
+      <ContinetsPolygonLayer data={continents} />
     </MapContainer>
   );
 };
