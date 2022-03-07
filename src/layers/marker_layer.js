@@ -107,6 +107,7 @@ export const MarkerLayer = ({
           key={String(coordinates)}
           position={[coordinates[1], coordinates[0]]}
           icon={defaultIcon}
+          doFitToBounds={true}
         >
           <Popup>
             <PopupStatistics
