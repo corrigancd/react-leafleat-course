@@ -47,7 +47,7 @@ export const Map = () => {
         />
       </LayersControl>
       <FitBoundsToDataControl />
-      <ShowActiveFiltersControl />
+      <ShowActiveFiltersControl getFilters={() => ({ geoFilter, radiusFilter})} />
     </MapContainer>
   );
 };
