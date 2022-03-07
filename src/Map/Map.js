@@ -11,6 +11,7 @@ import { RadiusFilter } from "../layers/radius_filter";
 import { ContinetsPolygonLayer } from "../layers/continents_polygon_layer";
 
 import { FitBoundsToDataControl } from "../controls/fit_data_to_bounds";
+import { ShowActiveFiltersControl } from "../controls/show_active_filters";
 
 export const Map = () => {
   const [geoFilter, setGeoFilter] = useState(null);
@@ -46,6 +47,7 @@ export const Map = () => {
         />
       </LayersControl>
       <FitBoundsToDataControl />
+      <ShowActiveFiltersControl />
     </MapContainer>
   );
 };

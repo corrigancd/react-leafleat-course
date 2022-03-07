@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import ReactDOM, { unmountComponentAtNode } from "react-dom";
 import { Button } from "antd";
 
 import { BorderInnerOutlined, BorderOuterOutlined } from "@ant-design/icons";
@@ -21,9 +21,7 @@ Control.FitBoundsToDataControl = Control.extend({
           latLngs.push(latLng);
         }
       });
-      if (latLngs > 0) {
-        map.fitBounds(latLngs);
-      }
+      map.fitBounds(latLngs);
     };
 
     const commonProps = {
@@ -51,7 +49,9 @@ Control.FitBoundsToDataControl = Control.extend({
 
     return node;
   },
-  onRemove: function (map) {},
+  onRemove: function (map) {
+    unmountComponentAtNode(node);
+   },
 });
 
 export const FitBoundsToDataControl = createControlComponent(
