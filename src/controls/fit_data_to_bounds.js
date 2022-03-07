@@ -20,26 +20,32 @@ Control.FitBoundsToDataControl = Control.extend({
         if (latLng) {
           latLngs.push(latLng);
         }
-      })
-      map.fitBounds(latLngs);
-    }
+      });
+      if (latLngs > 0) {
+        map.fitBounds(latLngs);
+      }
+    };
+
+    const commonProps = {
+      className: "leaflet-control-layers",
+      style: { width: "33px", height: "33px" },
+    };
+
     ReactDOM.render(
-      <>
+      <div className="fit-bounds-control-container">
         <Button
-          className="leaflet-control-layers"
-          style={{ width: "33px", height: "33px" }}
+          {...commonProps}
           title="Fit bounds to data"
           icon={<BorderInnerOutlined />}
           onClick={() => doFitDataToBounds()}
         ></Button>
         <Button
-          className="leaflet-control-layers"
-          style={{ width: "33px", height: "33px" }}
+          {...commonProps}
           title="Fit bounds to world"
           icon={<BorderOuterOutlined />}
           onClick={() => map.fitWorld()}
         ></Button>
-      </>,
+      </div>,
       node
     );
 
