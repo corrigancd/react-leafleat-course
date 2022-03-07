@@ -7,6 +7,7 @@ import { continents } from "../data/continents";
 
 import { MarkerLayer } from "../layers/marker_layer";
 import { MarkerLayerWithTooltip } from "../layers/marker_layer_with_tooltip";
+import { MarkerLayerWithTooltipCluster } from "../layers/marker_layer_with_tooltip_cluster";
 import { RadiusFilter } from "../layers/radius_filter";
 import { ContinetsPolygonLayer } from "../layers/continents_polygon_layer";
 
@@ -55,6 +56,7 @@ export const Map = () => {
           getGeoFilter={getGeoFilter}
         />
         <MarkerLayerWithTooltip data={mountains} />
+        <MarkerLayerWithTooltipCluster data={cities} />
         <RadiusFilter
           radiusFilter={radiusFilter}
           setRadiusFilter={setRadiusFilter}
