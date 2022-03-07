@@ -4,10 +4,12 @@ import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import { cities } from "../data/cities";
 import { mountains } from "../data/highest_points";
 import { continents } from "../data/continents";
+import { irishCities2157 } from "../data/irish_cities_2157";
 
 import { MarkerLayer } from "../layers/marker_layer";
 import { MarkerLayerWithTooltip } from "../layers/marker_layer_with_tooltip";
 import { MarkerLayerWithTooltipCluster } from "../layers/marker_layer_with_tooltip_cluster";
+import { MarkerLayerWithTooltipReproject } from "../layers/marker_layer_with_tooltip_reproject";
 import { RadiusFilter } from "../layers/radius_filter";
 import { ContinetsPolygonLayer } from "../layers/continents_polygon_layer";
 
@@ -57,6 +59,7 @@ export const Map = () => {
         />
         <MarkerLayerWithTooltip data={mountains} />
         <MarkerLayerWithTooltipCluster data={cities} />
+        <MarkerLayerWithTooltipReproject data={irishCities2157} />
         <RadiusFilter
           radiusFilter={radiusFilter}
           setRadiusFilter={setRadiusFilter}
