@@ -15,6 +15,7 @@ import { ContinetsPolygonLayer } from "../layers/continents_polygon_layer";
 
 import { FitBoundsToDataControl } from "../controls/fit_data_to_bounds";
 import { ShowActiveFiltersControl } from "../controls/show_active_filters";
+import { RoutingMachine } from "../controls/routing_machine";
 
 export const Map = () => {
   const [geoFilter, setGeoFilter] = useState(null);
@@ -74,6 +75,7 @@ export const Map = () => {
       <ShowActiveFiltersControl
         getFilters={() => ({ geoFilter, radiusFilter })}
       />
+      <RoutingMachine />
     </MapContainer>
   );
 };
