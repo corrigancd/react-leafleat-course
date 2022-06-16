@@ -59,7 +59,15 @@ export const Map = () => {
           getGeoFilter={getGeoFilter}
         />
         <MarkerLayerWithTooltip data={mountains} />
-        <MarkerLayerWithTooltipCluster data={cities} />
+        {/* 
+        Current compatability issues with the versions below
+          - react-leaflet-marker cluster 3.0.0-rc1
+          - reactLeaflet v4.0.0 
+          - React v18.2.0
+        There is a Github issue open for this:
+        https://github.com/yuzhva/react-leaflet-markercluster/issues/187
+         */}
+        {/* <MarkerLayerWithTooltipCluster data={cities} /> */}
         <MarkerLayerWithTooltipReproject data={irishCities2157} />
         <RadiusFilter
           radiusFilter={radiusFilter}
