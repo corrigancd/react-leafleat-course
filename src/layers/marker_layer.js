@@ -120,7 +120,7 @@ export const MarkerLayer = ({
     });
     
   return (
-    <LayersControl.Overlay name="World cities">
+    <LayersControl.Overlay checked name="World cities">
       <LayerGroup>{layer}</LayerGroup>
     </LayersControl.Overlay>
   );

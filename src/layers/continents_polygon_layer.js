@@ -25,7 +25,7 @@ export const ContinetsPolygonLayer = ({ data, setGeoFilter, getGeoFilter }) => {
   );
 
   return (
-    <LayersControl.Overlay name="Continents">
+    <LayersControl.Overlay checked name="Continents">
       {layer}
     </LayersControl.Overlay>
   );

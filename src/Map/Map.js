@@ -38,15 +38,15 @@ export const Map = () => {
   }, []);
 
   return (
-    <MapContainer center={[0, 0]} zoom={1} scrollWheelZoom={true}>
+    <MapContainer center={[0, 0]} zoom={2} scrollWheelZoom={true}>
       <LayersControl position="topright">
-        <LayersControl.BaseLayer checked name="OSM Streets">
+        <LayersControl.BaseLayer name="OSM Streets">
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
         </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer name="ESRI World Imagery">
+        <LayersControl.BaseLayer checked name="ESRI World Imagery">
           <TileLayer
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
@@ -58,7 +58,7 @@ export const Map = () => {
           getRadiusFilter={getRadiusFilter}
           getGeoFilter={getGeoFilter}
         />
-        <MarkerLayerWithTooltip data={mountains} />
+        <MarkerLayerWithTooltip  data={mountains} />
         {/* 
         Current compatability issues with the versions below
           - react-leaflet-marker cluster 3.0.0-rc1

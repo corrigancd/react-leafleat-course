@@ -12,13 +12,17 @@
     "react": "^18.2.0",
     "react-dom": "18.2.0",
     "react-leaflet": "4.2.1",
-    "react-scripts": "5.0.0"
+    "react-scripts": "5.0.0",
+    "serve": "14.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-image": "docker build -t react-leaflet-course .",
+    "docker-container": "docker run --name react-leaflet-course --rm -p 80:3000 -it react-leaflet-course",
+    "docker-image-and-container": "npm run docker-image && npm run docker-container"
   },
   "browserslist": [
     ">0.2%",
