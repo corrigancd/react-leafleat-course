@@ -25,7 +25,7 @@ export const MarkerLayerWithTooltipCluster = ({ data }) => {
   });
 
   return (
-    <LayersControl.Overlay name="World cities clustered">
+    <LayersControl.Overlay checked name="World cities clustered">
       <MarkerClusterGroup zoomToBoundsOnClick={false}>
         {layer}
       </MarkerClusterGroup>
