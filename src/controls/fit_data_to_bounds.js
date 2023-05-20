@@ -1,4 +1,5 @@
-import ReactDOM, { unmountComponentAtNode } from "react-dom";
+import ReactDOM from "react-dom/client";
+
 import { Button } from "antd";
 
 import { BorderInnerOutlined, BorderOuterOutlined } from "@ant-design/icons";
@@ -7,6 +8,7 @@ import { createControlComponent } from "@react-leaflet/core";
 import { Control, DomUtil } from "leaflet";
 
 const node = DomUtil.create("div");
+const root = ReactDOM.createRoot(node);
 
 Control.FitBoundsToDataControl = Control.extend({
   options: {
@@ -31,7 +33,7 @@ Control.FitBoundsToDataControl = Control.extend({
       style: { width: "33px", height: "33px" },
     };
 
-    ReactDOM.render(
+    root.render(
       <div className="fit-bounds-control-container">
         <Button
           {...commonProps}
@@ -45,14 +47,13 @@ Control.FitBoundsToDataControl = Control.extend({
           icon={<BorderOuterOutlined />}
           onClick={() => map.fitWorld()}
         ></Button>
-      </div>,
-      node
+      </div>
     );
 
     return node;
   },
   onRemove: function (map) {
-    unmountComponentAtNode(node);
+    root.unmount();
   },
 });
 
